@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Wish 🎂</title>
+    <link rel="stylesheet" href="wish.css">
+</head>
+<body>
+
+    <main class="wish-page">
+
+        <!-- Decorative stars -->
+        <span class="star star-one">✦</span>
+        <span class="star star-two">✧</span>
+        <span class="star star-three">✦</span>
+        <span class="star star-four">✧</span>
+        <span class="heart heart-one">♡</span>
+        <span class="heart heart-two">♥</span>
+
+        <header class="wish-header">
+            <p class="eyebrow">A LITTLE BIRTHDAY MAGIC</p>
+            <h1 id="wishTitle">Make a wish</h1>
+            <p class="wish-subtitle" id="wishSubtitle">
+                Close your eyes and wish for something beautiful ♡
+            </p>
+        </header>
+
+        <!-- Birthday cake -->
+        <section class="cake-scene" aria-label="Birthday cake with candles">
+
+            <div class="sparkle sparkle-one">✧</div>
+            <div class="sparkle sparkle-two">✦</div>
+
+            <div class="cake">
+
+                <!-- Candles -->
+                <div class="candles" id="candles">
+
+                    <div class="candle candle-one">
+                        <span class="flame"></span>
+                    </div>
+
+                    <div class="candle candle-two">
+                        <span class="flame"></span>
+                    </div>
+
+                    <div class="candle candle-three">
+                        <span class="flame"></span>
+                    </div>
+
+                    <div class="candle candle-four">
+                        <span class="flame"></span>
+                    </div>
+
+                    <div class="candle candle-five">
+                        <span class="flame"></span>
+                    </div>
+
+                    <div class="candle candle-six">
+                        <span class="flame"></span>
+                    </div>
+
+                    <div class="candle candle-seven">
+                        <span class="flame"></span>
+                    </div>
+
+                </div>
+
+                <!-- Top cake layer -->
+                <div class="cake-top">
+                    <div class="top-icing"></div>
+                    <span class="cake-heart">♡</span>
+                    <span class="cake-dot dot-one"></span>
+                    <span class="cake-dot dot-two"></span>
+                    <span class="cake-dot dot-three"></span>
+                </div>
+
+                <!-- Bottom cake layer -->
+                <div class="cake-bottom">
+                    <div class="bottom-icing"></div>
+                    <span class="cake-heart bottom-heart">♥</span>
+                </div>
+
+                <!-- Plate -->
+                <div class="cake-plate"></div>
+
+            </div>
+
+            <!-- Fireworks are created here by JavaScript -->
+            <div class="fireworks" id="fireworks"></div>
+
+        </section>
+
+        <!-- Blow button -->
+        <button class="blow-button" id="blowButton" onclick="blowCandles()">
+            <span id="buttonText">BLOW</span>
+            <span class="button-heart">♡</span>
+        </button>
+
+        <p class="wish-message" id="wishMessage" aria-live="polite">
+            Make a wish, birthday girl! ✨
+        </p>
+
+        <p class="bottom-note">the universe is listening to you ⋆｡°✩</p>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <button class="nav-button back-button"
+                    onclick="goBack()">
+                ← BACK
+            </button>
+
+            <button class="nav-button next-button"
+                    onclick="goNext()">
+                NEXT ♡ →
+            </button>
+        </nav>
+
+    </main>
+
+    <script>
+        let candlesBlown = false;
+
+        function blowCandles() {
+            if (candlesBlown) return;
+
+            candlesBlown = true;
+
+            // Extinguish all seven flames
+            document.querySelectorAll(".candle").forEach((candle, index) => {
+                setTimeout(() => {
+                    candle.classList.add("extinguished");
+                }, index * 100);
+            });
+
+            // Change the birthday message
+            document.getElementById("wishTitle").textContent = "Wish made! ♡";
+
+            document.getElementById("wishSubtitle").textContent =
+                "May all your little dreams come true ✨";
+
+            document.getElementById("wishMessage").textContent =
+                "YAYYY! Your wish is on its way! 🎆💗";
+
+            document.getElementById("buttonText").textContent = "BLOWN";
+
+            document.getElementById("blowButton").classList.add("blown");
+
+            // Launch colorful CSS fireworks
+            launchFireworks();
+        }
+
+        function launchFireworks() {
+            const container = document.getElementById("fireworks");
+            const colors = [
+                "#ffb6d0",
+                "#ffe58a",
+                "#ffffff",
+                "#ff7799",
+                "#b9f2ff",
+                "#e4b5ff"
+            ];
+
+            // Several bursts at different positions
+            const bursts = [
+                { x: 15, y: 35 },
+                { x: 85, y: 30 },
+                { x: 50, y: 12 },
+                { x: 25, y: 65 },
+                { x: 78, y: 65 },
+                { x: 50, y: 45 }
+            ];
+
+            bursts.forEach((burst, burstIndex) => {
+                setTimeout(() => {
+                    const color = colors[burstIndex % colors.length];
+
+                    for (let i = 0; i < 18; i++) {
+                        const particle = document.createElement("span");
+                        const angle = (Math.PI * 2 * i) / 18;
+                        const distance = 35 + Math.random() * 55;
+
+                        particle.className = "firework-particle";
+                        particle.style.left = burst.x + "%";
+                        particle.style.top = burst.y + "%";
+                        particle.style.setProperty("--dx",
+                            Math.cos(angle) * distance + "px");
+                        particle.style.setProperty("--dy",
+                            Math.sin(angle) * distance + "px");
+                        particle.style.setProperty("--firework-color", color);
+
+                        container.appendChild(particle);
+
+                        setTimeout(() => particle.remove(), 1500);
+                    }
+                }, burstIndex * 250);
+            });
+        }
+
+        function goBack() {
+            window.location.href = "memories.html";
+        }
+
+        function goNext() {
+            window.location.href = "letter.html";
+        }
+    </script>
+
+</body>
+</html>

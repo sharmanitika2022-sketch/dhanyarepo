@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Little Secret ♡</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="screen">
+
+
+        <section class="memory-side">
+            <div class="polaroid">
+                
+
+<div class="photo-frame">
+    <img src="bestie2..jpeg" alt="My bestie" class="bestie-photo">
+    <span class="photo-sticker sticker-flower">🌷</span>
+    <span class="photo-sticker sticker-sparkle">✨</span>
+</div>
+
+
+                    <span>♡</span>
+                </div>
+                <div class="polaroid-caption">my favorite person</div>
+            </div>
+
+            <div class="bow">🎀</div>
+            <div class="teddy">🧸</div>
+            <div class="little-heart heart-one">♥</div>
+            <div class="little-heart heart-two">♡</div>
+        </section>
+
+        <!-- RIGHT: Passcode keypad -->
+        <section class="keypad-side">
+            <p class="heading">Enter a passcode</p>
+
+            <div class="code-boxes" id="codeBoxes">
+                <div class="code-box"></div>
+                <div class="code-box"></div>
+                <div class="code-box"></div>
+                <div class="code-box"></div>
+            </div>
+
+            <p class="hint" id="hint">a little surprise awaits ♡</p>
+
+            <div class="keypad">
+                <button class="key" data-key="1">1</button>
+                <button class="key" data-key="2">2</button>
+                <button class="key" data-key="3">3</button>
+                <button class="key" data-key="4">4</button>
+                <button class="key" data-key="5">5</button>
+                <button class="key" data-key="6">6</button>
+                <button class="key" data-key="7">7</button>
+                <button class="key" data-key="8">8</button>
+                <button class="key" data-key="9">9</button>
+                <button class="key" data-key="clear">*</button>
+                <button class="key" data-key="0">0</button>
+                <button class="key" data-key="delete"><</button>
+            </div>
+
+            <p class="bottom-text">made with love, just for you</p>
+        </section>
+
+    </main>
+
+    <script>
+        const secretCode = "2111"; // Change this
+        let enteredCode = "";
+
+        const boxes = document.querySelectorAll(".code-box");
+        const hint = document.getElementById("hint");
+
+        function updateBoxes() {
+            boxes.forEach((box, index) => {
+                box.textContent = enteredCode[index] ? "♥" : "";
+                box.classList.toggle(
+                    "filled",
+                    index < enteredCode.length
+                );
+            });
+        }
+
+        function checkCode() {
+            if (enteredCode.length === 4) {
+                if (enteredCode === secretCode) {
+                    hint.textContent = "Yayyy! Unlocking your surprise ♡";
+
+                    // Next birthday page will go here
+                    setTimeout(() => {
+                        window.location.href = "surprise.html";
+                    }, 800);
+                } else {
+                    hint.textContent = "Oops! Try our birth date baby ♡";
+                    enteredCode = "";
+                    updateBoxes();
+                }
+            }
+        }
+        
+
+        document.querySelectorAll(".key").forEach(button => {
+            button.addEventListener("click", () => {
+                const key = button.dataset.key;
+
+                if (key === "clear") {
+                    enteredCode = "";
+                    hint.textContent = "a little surprise awaits ♡";
+                } else if (key === "delete") {
+                    enteredCode = enteredCode.slice(0, -1);
+                    hint.textContent = "a little surprise awaits ♡";
+                } else if (enteredCode.length < 4) {
+                    enteredCode += key;
+                }
+
+                updateBoxes();
+                checkCode();
+            });
+        });
+
+        // Allow keyboard number entry too
+        document.addEventListener("keydown", event => {
+            if (/^[0-9]$/.test(event.key) && enteredCode.length < 4) {
+                enteredCode += event.key;
+                updateBoxes();
+                checkCode();
+            }
+
+            if (event.key === "Backspace") {
+                enteredCode = enteredCode.slice(0, -1);
+                updateBoxes();
+            }
+
+            if (event.key === "Escape") {
+                enteredCode = "";
+                updateBoxes();
+            }
+        });
+    </script>
+
+</body>
+</html>

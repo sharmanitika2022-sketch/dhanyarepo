@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gifts for You 🎁</title>
+    <link rel="stylesheet" href="memories.css">
+</head>
+<body>
+
+    <main class="gift-page">
+        <div class="flower-decoration flower-top-left">✿</div>
+<div class="flower-decoration flower-bottom-left">❀</div>
+<div class="flower-decoration flower-bottom-right">✿</div>
+<div class="flower-decoration flower-middle-left">♡</div>
+<div class="flower-decoration flower-middle-right">♡</div>
+
+        <h1>Gift for you</h1>
+
+        <p class="subtitle">three little surprises, just for you ♡</p>
+
+        <section class="gifts-container">
+
+            <!-- GIFT 1 -->
+            <button class="gift-button" onclick="openGift(1)"
+                    aria-label="Open gift one">
+                <div class="gift">
+                    <div class="gift-lid"></div>
+                    <div class="gift-box">
+                        <div class="gift-ribbon vertical"></div>
+                        <div class="gift-ribbon horizontal"></div>
+                    </div>
+                    <div class="bow">
+                        <span class="bow-left"></span>
+                        <span class="bow-right"></span>
+                        <span class="bow-center"></span>
+                    </div>
+                </div>
+            </button>
+
+            <!-- GIFT 2 -->
+            <button class="gift-button" onclick="openGift(2)"
+                    aria-label="Open gift two">
+                <div class="gift">
+                    <div class="gift-lid"></div>
+                    <div class="gift-box">
+                        <div class="gift-ribbon vertical"></div>
+                        <div class="gift-ribbon horizontal"></div>
+                    </div>
+                    <div class="bow">
+                        <span class="bow-left"></span>
+                        <span class="bow-right"></span>
+                        <span class="bow-center"></span>
+                    </div>
+                </div>
+            </button>
+
+            <!-- GIFT 3 -->
+            <button class="gift-button" onclick="openGift(3)"
+                    aria-label="Open gift three">
+                <div class="gift">
+                    <div class="gift-lid"></div>
+                    <div class="gift-box">
+                        <div class="gift-ribbon vertical"></div>
+                        <div class="gift-ribbon horizontal"></div>
+                    </div>
+                    <div class="bow">
+                        <span class="bow-left"></span>
+                        <span class="bow-right"></span>
+                        <span class="bow-center"></span>
+                    </div>
+                </div>
+            </button>
+
+        </section>
+
+        <p class="instruction">click any gift to open ♡</p>
+
+       
+
+        <!-- Gift surprise popup -->
+        <div class="popup-overlay" id="giftPopup" role="dialog"
+             aria-modal="true" aria-labelledby="popupTitle" hidden>
+
+            <div class="popup-card">
+                <button class="close-button" onclick="closeGift()"
+                        aria-label="Close popup">×</button>
+
+                <div class="popup-flower">🌷</div>
+
+                <h2 id="popupTitle">A little surprise for you!</h2>
+
+                <p id="popupMessage"></p>
+
+                <div class="popup-heart">♡ ♡ ♡</div>
+
+                <button class="close-gift-button" onclick="closeGift()">
+                    back to my gifts
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        const gifts = {
+            1: {
+                title: "A little love letter 💌",
+                message: "You are one of the most beautiful parts of my life. Thank you for all the laughs, the memories, and the moments that mean more than words can say. I'm so lucky to have you as my best friend. Love you always! ♡"
+            },
+
+            2: {
+                title: "A wish just for you 🌷",
+                message: "May this year bring you the happiest surprises, endless laughter, beautiful memories, and every little thing your heart wishes for. You deserve so much love and happiness. Never stop shining, birthday girl! ✨"
+            },
+
+            3: {
+                title: "One promise, bestie 🎀",
+                message: "No matter how much life changes, I hope we always find our way back to each other. More silly jokes, late-night talks, crazy adventures, and memories to laugh about forever. You're stuck with me! ♡"
+            }
+        };
+
+        function openGift(number) {
+            const gift = gifts[number];
+
+            document.getElementById("popupTitle").textContent =
+                gift.title;
+
+            document.getElementById("popupMessage").textContent =
+                gift.message;
+
+            document.getElementById("giftPopup").hidden = false;
+
+            document.querySelector(".close-button").focus();
+        }
+
+        function closeGift() {
+            document.getElementById("giftPopup").hidden = true;
+        }
+
+        document.getElementById("giftPopup").addEventListener(
+            "click",
+            function(event) {
+                if (event.target === this) {
+                    closeGift();
+                }
+            }
+        );
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeGift();
+            }
+        });
+
+        function goBack() {
+            window.location.href = "surprise.html";
+        }
+    </script>
+    
+<nav class="page-navigation">
+    <button class="page-back" onclick="window.location.href='surprise.html'">
+        ← BACK
+    </button>
+
+    <button class="page-next" onclick="window.location.href='wish.html'">
+        NEXT ♡ →
+    </button>
+</nav>
+
+
+</body>
+</html>

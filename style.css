@@ -1,0 +1,327 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #950900;
+    font-family: Georgia, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #ffd5d5;
+}
+
+/* Main screen */
+.screen {
+    width: min(900px, 94%);
+    min-height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 45px;
+    padding: 35px;
+}
+
+/* LEFT SIDE */
+.memory-side {
+    width: 48%;
+    min-height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Polaroid frame */
+.polaroid {
+    width: 265px;
+    height: 300px;
+    background: #e7a5a7;
+    padding: 12px 12px 0;
+    position: relative;
+    transform: rotate(-2deg);
+    box-shadow: 0 8px 18px #4d000055;
+}
+
+.photo-space {
+    width: 100%;
+    height: 220px;
+    background: #7d171b;
+    border: 1px solid #d28b8d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:
+        radial-gradient(circle at 30% 30%, #a93639 0, transparent 45%),
+        radial-gradient(circle at 75% 70%, #570508 0, transparent 45%);
+}
+
+.photo-space span {
+    font-size: 35px;
+    color: #e8a3ad;
+    opacity: 0.8;
+}
+
+.polaroid-caption {
+    color: #8b2529;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 17px;
+    font-style: italic;
+}
+
+/* Decorative bow */
+.bow {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 55px;
+    transform: rotate(15deg);
+    filter: drop-shadow(2px 3px 2px #4d000055);
+    z-index: 2;
+}
+
+/* Teddy decoration */
+.teddy {
+    position: absolute;
+    bottom: -10px;
+    left: 2px;
+    font-size: 68px;
+    transform: rotate(-8deg);
+    filter: drop-shadow(2px 3px 2px #4d000055);
+}
+
+.little-heart {
+    position: absolute;
+    color: #f1b3c0;
+    font-size: 25px;
+}
+
+.heart-one {
+    left: 5px;
+    top: 130px;
+    transform: rotate(-20deg);
+}
+
+.heart-two {
+    right: 8px;
+    bottom: 30px;
+}
+
+/* RIGHT SIDE */
+.keypad-side {
+    width: 280px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.heading {
+    font-size: 20px;
+    color: #ffe1df;
+    margin-bottom: 15px;
+}
+
+/* Four passcode boxes */
+.code-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 12px;
+}
+
+.code-box {
+    width: 43px;
+    height: 49px;
+    border: 3px solid #efb2b5;
+    border-radius: 7px;
+    background: #a91b20;
+    color: #ffe4e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: 0.2s;
+}
+
+.code-box.filled {
+    background: #e9b3b6;
+    color: #9b1014;
+    border-color: #ffe1df;
+}
+
+/* Hint text */
+.hint {
+    min-height: 24px;
+    font-size: 13px;
+    color: #f6bfc2;
+    margin-bottom: 9px;
+}
+
+/* Number keypad */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 13px;
+    justify-items: center;
+    max-width: 225px;
+    margin: 0 auto;
+}
+
+.key {
+    width: 49px;
+    height: 49px;
+    border: none;
+    border-radius: 50%;
+    background: #e7a3aa;
+    color: #920b10;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 3px 0 #6e0508;
+    transition: transform 0.15s, background 0.15s;
+}
+
+.key:hover {
+    background: #ffd6d9;
+    transform: scale(1.07);
+}
+
+.key:active {
+    transform: scale(0.93);
+    box-shadow: none;
+}
+
+.bottom-text {
+    font-size: 13px;
+    font-style: italic;
+    color: #efb4ba;
+    margin-top: 22px;
+}
+
+/* Smaller screens */
+@media (max-width: 620px) {
+    body {
+        overflow-y: auto;
+    }
+
+    .screen {
+        flex-direction: column;
+        gap: 30px;
+        padding: 35px 10px;
+    }
+
+    .memory-side {
+        width: 100%;
+        min-height: 270px;
+    }
+
+    .polaroid {
+        width: 220px;
+        height: 250px;
+    }
+
+    .photo-space {
+        height: 180px;
+    }
+
+    .bow {
+        right: calc(50% - 130px);
+        top: 0;
+    }
+
+    .teddy {
+        left: calc(50% - 140px);
+        bottom: -5px;
+    }
+
+    .keypad-side {
+        width: 100%;
+    }
+
+    .heading {
+        font-size: 19px;
+    }
+}
+
+
+/* Original photo box — slightly bigger and cuter */
+.photo-frame {
+    position: relative;
+    width: 205px;
+    height: 245px;
+    padding: 7px;
+    background: #f8dce7;
+    border: 3px solid #e9a3bb;
+    box-shadow:
+        0 0 0 3px #fff5f8,
+        0 0 0 5px #edc1d0,
+        0 8px 20px #7b001b25;
+    flex-shrink: 0;
+}
+
+/* Photo inside the original frame */
+.bestie-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 2px solid #fff9fb;
+}
+
+/* Cute stickers around the frame */
+.photo-frame::before {
+    content: "🎀";
+    position: absolute;
+    top: -23px;
+    right: -19px;
+    font-size: 35px;
+    z-index: 3;
+    filter: drop-shadow(0 2px 2px #00000015);
+}
+
+.photo-frame::after {
+    content: "💕";
+    position: absolute;
+    bottom: -17px;
+    left: -17px;
+    font-size: 28px;
+    z-index: 3;
+    filter: drop-shadow(0 2px 2px #00000015);
+}
+
+.photo-sticker {
+    position: absolute;
+    z-index: 4;
+    pointer-events: none;
+    filter: drop-shadow(0 2px 2px #00000012);
+}
+
+.sticker-flower {
+    top: 30px;
+    left: -19px;
+    font-size: 25px;
+    transform: rotate(-15deg);
+}
+
+.sticker-sparkle {
+    right: -15px;
+    bottom: 35px;
+    font-size: 23px;
+}
+
+/* Keep the larger photo from squeezing the keypad */
+@media (max-width: 600px) {
+    .photo-frame {
+        width: 180px;
+        height: 220px;
+    }
+}
+
+
